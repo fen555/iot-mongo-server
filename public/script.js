@@ -25,7 +25,7 @@ angular.module('app', [])
     }
 
     function saveHomework (data) {
-      $http.post('/api/homework', data)
+      $http.post('/', data)
         .then(function success (response) {
           console.log(response)
           getHomeworks()

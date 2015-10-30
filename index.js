@@ -11,10 +11,8 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
 var homework = require('./models/homework/homework.route.js')
-app.use('/api/homework', homework)
+app.use('/', homework)
 
-var phonebook = require('./models/phonebook/phonebook.route.js')
-app.use('/api/phonebook', phonebook)
 
 var server = app.listen(3000, function () {
   var host = server.address().address
