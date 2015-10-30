@@ -11,7 +11,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
 var homework = require('./models/homework/homework.route.js')
-app.use('/', homework)
+app.use('/api/homework', homework)
 
 
 var server = app.listen(3000, function () {
