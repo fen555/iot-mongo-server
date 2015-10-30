@@ -22,5 +22,19 @@
     }
   })
 
+  // 'timestamp': { type: Date, default: Date.now },
+  //   'iot-id' : {
+  //     type : String,
+  //     required : true
+  //   },
+  //   'temperature' : {
+  //     type : String,
+  //     required : true
+  //   },
+  //   'relative-humidity' : {
+  //     type : String,
+  //     required : true
+  //   }
+
   module.exports = mongoose.model(modelName, schema)
 })()
