@@ -1,5 +1,5 @@
 {
-  "name": "iot-mongo-server",
+  "name": "homework-api-mongoose",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,6 +9,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.13.3"
+    "body-parser": "^1.14.1",
+    "chart.js": "^1.0.2",
+    "express": "^4.13.3",
+    "mongodb": "^2.0.46",
+    "mongoose": "^4.1.9"
   }
 }
