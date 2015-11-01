@@ -26,21 +26,19 @@ app.use('/api/iot', homework)
     })
   })
 
- // app.delete('/', function (req, res, next) {
-    
- //  })
-app.delete('/api/iot/:id', function (req, res){
-      return iot.findById(req.params.id, function (err, iot) {
-        return iot.remove(function (err) {
-          if (!err) {
-            console.log("removed")
-            return res.send('')
-          } else {
-            console.log(err)
-          }
-        })
-      })
-    })
+ 
+// app.delete('/api/iot/:id', function (req, res){
+//       return iot.findById(req.params.id, function (err, iot) {
+//         return iot.remove(function (err) {
+//           if (!err) {
+//             console.log("removed")
+//             return res.send('')
+//           } else {
+//             console.log(err)
+//           }
+//         })
+//       })
+//     })
 
 
 
