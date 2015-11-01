@@ -34,4 +34,10 @@ angular.module('app', [])
           alert(response.data.message)
         })
     }
+
+    vm.Del = function (id,index){
+      //console.log(id,index)
+      
+
+    }
   })
