@@ -1,6 +1,6 @@
 ;(function () {
   'use strict'
-  var modelName = 'homework'
+  var modelName = 'iot'
   var mongoose = require('mongoose')
   var Schema = mongoose.Schema
 
@@ -22,19 +22,7 @@
     }
   })
 
-  // 'timestamp': { type: Date, default: Date.now },
-  //   'iot-id' : {
-  //     type : String,
-  //     required : true
-  //   },
-  //   'temperature' : {
-  //     type : String,
-  //     required : true
-  //   },
-  //   'relative-humidity' : {
-  //     type : String,
-  //     required : true
-  //   }
+  
 
   module.exports = mongoose.model(modelName, schema)
 })()

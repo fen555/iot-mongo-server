@@ -3,7 +3,7 @@ var express = require('express')
 var app = express()
 var bodyParser = require('body-parser')
 
-mongoose.connect('mongodb://localhost:27017/homework_db')
+mongoose.connect('mongodb://localhost:27017/iot_db')
 
 app.use(express.static('public'))
 
@@ -11,7 +11,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
 var homework = require('./models/homework/homework.route.js')
-app.use('/api/homework', homework)
+app.use('/api/iot', homework)
 
 
 var server = app.listen(3000, function () {

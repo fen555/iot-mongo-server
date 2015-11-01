@@ -16,7 +16,7 @@ angular.module('app', [])
     }
 
     function getHomeworks () {
-      $http.get('/api/homework')
+      $http.get('/api/iot')
         .then(function success (response) {
           vm.homeworks = response.data
         }, function error (response) {
