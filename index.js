@@ -4,7 +4,7 @@ var app = express()
 var bodyParser = require('body-parser')
 var Model = require('./models/homework/homework.schema.js')
 
-mongoose.connect('mongodb://localhost:27017/iot_db')
+mongoose.connect('mongodb://localhost/iot')
 
 app.use(express.static('public'))
 
@@ -25,6 +25,22 @@ app.use('/api/iot', homework)
       }
     })
   })
+
+ // app.delete('/', function (req, res, next) {
+    
+ //  })
+app.delete('/api/iot/:id', function (req, res){
+      return iot.findById(req.params.id, function (err, iot) {
+        return iot.remove(function (err) {
+          if (!err) {
+            console.log("removed")
+            return res.send('')
+          } else {
+            console.log(err)
+          }
+        })
+      })
+    })
 
 
 

@@ -37,7 +37,16 @@ angular.module('app', [])
 
     vm.Del = function (id,index){
       //console.log(id,index)
-      
+     $http.delete('/api/iot/'+id)
+          .success(function(data) {
+            vm.homeworks.splice(index,1)
+            
+            
+          })
+          .error(function(data) {
+            console.log('Error: ' + data)
+          })
+        
 
     }
   })
