@@ -61,7 +61,17 @@ angular.module('app', [])
 
     vm.register = function(regis){
       console.log(regis)
+      $http.post('/api/member', regis)
+          .then(function success (response) {
+            console.log(response)
+            
+            alert('Success')
+          }, function error (response) {
+            alert(response.data.message)
+        })
     }
+
+
 
     vm.graph = function(){
       $http.get('/api/iot')

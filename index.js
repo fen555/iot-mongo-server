@@ -12,6 +12,8 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
 var homework = require('./models/homework/homework.route.js')
+var member = require('./models/member/member.route.js')
+
 app.use('/api/iot', homework)
 
 
@@ -26,6 +28,7 @@ app.use('/api/iot', homework)
     })
   })
 
+app.use('/api/member', member)
  
 // app.delete('/api/iot/:id', function (req, res){
 //       return iot.findById(req.params.id, function (err, iot) {
