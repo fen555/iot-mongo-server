@@ -50,6 +50,15 @@ angular.module('app', [])
 
     // }
 
+    vm.login = function(){
+      window.location = "login.html"
+    }
+
+
+    vm.log = function(input){
+      console.log(input)
+    }
+
     vm.graph = function(){
       $http.get('/api/iot')
               .then(function success (response) {
@@ -98,6 +107,6 @@ angular.module('app', [])
       
     }
 
-    
+
 
   })
