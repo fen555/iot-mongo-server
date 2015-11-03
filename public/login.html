@@ -15,12 +15,28 @@
   <title>Login</title>
 </head>
 <body ng-controller="AppController as appCtrl">
-	<div class="col-sm-4">
+	<div class="col-sm-3">
     <form ng-submit="appCtrl.log(input)">
-      <input type="username" placeholder="Username" ng-model="input.user">
-      <input type="password" placeholder="Password" ng-model="input.pass">
+      Username<input type="username" placeholder="Username" ng-model="input.username">
+      Password<input type="password" placeholder="Password" ng-model="input.password">
       <input type="submit" value="Login" >
     </form>
+
+
+  </div>
+
+  <div class="col-sm-2">
+    <form ng-submit="appCtrl.register(regis)">
+      Name<input type="text" placeholder="Name" ng-model="regis.name">
+      Surname<input type="text" placeholder="Surname" ng-model="regis.surname">
+      Tel.<input type="text" placeholder="Tel" ng-model="regis.tel">
+      E-mail<input type="text" placeholder="E-mail" ng-model="regis.email">
+      username<input type="text" placeholder="Username" ng-model="regis.user">
+      password<input type="password" placeholder="Password" ng-model="regis.pass">
+      <input type="submit" value="Login" >
+    </form>
+
+    
   </div>
 </body>
 </html>

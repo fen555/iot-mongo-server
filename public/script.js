@@ -59,6 +59,10 @@ angular.module('app', [])
       console.log(input)
     }
 
+    vm.register = function(regis){
+      console.log(regis)
+    }
+
     vm.graph = function(){
       $http.get('/api/iot')
               .then(function success (response) {
