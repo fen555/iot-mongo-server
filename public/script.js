@@ -57,12 +57,20 @@ angular.module('app', [])
 
     vm.log = function(input){
       console.log(input)
+      $http.post('/login' , { username : input.username })
+       .then(function success (response) {
+            console.log(response)
+            if(response.data[0].username == input.username ){
+              console.log("have")
+            }else  console.log("don't have")
+         })
     }
 
     vm.register = function(regis){
       console.log(regis)
       $http.post('/api/member', regis)
           .then(function success (response) {
+
             console.log(response)
             
             alert('Success')
@@ -109,8 +117,11 @@ angular.module('app', [])
                
                   for(var i =0;i<response.data.length;i++){
                     if (response.data[i].iot_id==0){
-                         myLineChart.addData([response.data[i].temperature, response.data[i].relative_humidity] ,"IOT_ID : 0");
+                         myLineChart.addData([response.data[i].temperature, response.data[i].relative_humidity] ,vm.toThaiDateTime(response.data[i].timestamp));
                        }
+                    // if (response.data[i].iot_id==1){
+                    //      myLineChart.addData([response.data[i].temperature, response.data[i].relative_humidity] ,vm.toThaiDateTime(response.data[i].timestamp));
+                    //    }
                    
                 }
                

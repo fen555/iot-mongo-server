@@ -28,7 +28,7 @@
       type : String,
       //required : true
     },
-    passworde : {
+    password : {
       type : String,
       //required : true
     }

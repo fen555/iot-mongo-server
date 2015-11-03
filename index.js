@@ -3,6 +3,9 @@ var express = require('express')
 var app = express()
 var bodyParser = require('body-parser')
 var Model = require('./models/homework/homework.schema.js')
+var Mem = require('./models/member/member.schema.js')
+
+ 
 
 mongoose.connect('mongodb://localhost/iot')
 
@@ -13,6 +16,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 var homework = require('./models/homework/homework.route.js')
 var member = require('./models/member/member.route.js')
+
 
 app.use('/api/iot', homework)
 
@@ -28,7 +32,8 @@ app.use('/api/iot', homework)
     })
   })
 
-app.use('/api/member', member)
+app.use('/', member)
+
  
 // app.delete('/api/iot/:id', function (req, res){
 //       return iot.findById(req.params.id, function (err, iot) {
