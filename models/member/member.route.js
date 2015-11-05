@@ -26,7 +26,7 @@
   })
 
  router.post('/login',function(req,res){
-      console.log(req.body.username + " " +req.body.  password);
+      console.log(req.body.username + " " +req.body.password);
        
        Model.find({ username : req.body.username , password : req.body.password }).exec(function (err, results) {
        if (err) {

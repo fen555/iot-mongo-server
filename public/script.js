@@ -56,13 +56,16 @@ angular.module('app', [])
 
 
     vm.log = function(input){
-      console.log(input)
-      $http.post('/login' , { username : input.username })
+      console.log(vm.username + " " + vm.password)
+      $http.post('/login' , { username : vm.username,password : vm.password })
        .then(function success (response) {
             console.log(response)
-            if(response.data[0].username == input.username ){
-              console.log("have")
-            }else  console.log("don't have")
+            if(response.data[0] != null){
+              if(response.data[0].username == vm.username ){
+                console.log("have")
+                window.location = "report.html"
+              }else  console.log("don't have")
+            }else   console.log("don't have")
          })
     }
 
@@ -81,7 +84,7 @@ angular.module('app', [])
 
 
 
-    vm.graph0 = function(){
+    vm.graph_T = function(){
           $http.get('/api/iot')
                   .then(function success (response) {
              
@@ -116,7 +119,7 @@ angular.module('app', [])
                           ]
                       };
 
-                   var ctx = document.getElementById("c").getContext("2d")
+                   var ctx = document.getElementById("Temperature").getContext("2d")
                   
                     var myLineChart = new Chart(ctx).Bar(data);
                    
@@ -142,6 +145,82 @@ angular.module('app', [])
                                     if (parseInt(response.data[i].iot_id)==s){
                                          
                                         if(parseInt(response.data[i].temperature) < parseInt(min)) { min = response.data[i].temperature }
+                                        
+                                       }
+                                }
+                                 avg = sum/count;
+                                console.log(sum + " " + count + " " + avg)
+                                 myLineChart.addData([max,min,avg],"IOT-"+s);
+                             }
+                      }
+                      
+                  }
+
+                  }, function error (response) {
+                    alert(response.data.message)
+                  }) 
+          
+        }
+
+      vm.graph_R = function(){
+          $http.get('/api/iot')
+                  .then(function success (response) {
+             
+                      var data = {
+                          labels: [],
+                          datasets: [
+                              {
+                                  label: "MAX",
+                                  fillColor: "rgba(100,220,220,0.5)",
+                                  strokeColor: "rgba(100,220,220,0.8)",
+                                  highlightFill: "rgba(100,220,220,0.75)",
+                                  highlightStroke: "rgba(100,220,220,1)",
+                                  data: []
+                              },
+                              {
+                                  label: "MIN",
+                                  fillColor: "rgba(151,187,205,0.5)",
+                                  strokeColor: "rgba(151,187,205,0.8)",
+                                  highlightFill: "rgba(151,187,205,0.75)",
+                                  highlightStroke: "rgba(151,187,205,1)",
+                                  data: []
+                              }
+                              ,
+                              {
+                                  label: "AVG",
+                                  fillColor: "rgba(220,220,100,0.5)",
+                                  strokeColor: "rgba(220,220,100,0.8)",
+                                  highlightFill: "rgba(220,220,100,0.75)",
+                                  highlightStroke: "rgba(220,220,100,1)",
+                                  data: []
+                              }
+                          ]
+                      };
+
+                   var ctx = document.getElementById("humidity").getContext("2d")
+                  
+                    var myLineChart = new Chart(ctx).Bar(data);
+                   
+                   for(var s = 0;s<10;s++){
+                      var max = 0;
+                      var sum = 0;
+                      var count = 0;
+                      var avg = 0;
+                      for(var i =0;i<response.data.length;i++){
+                          if (response.data[i].iot_id==s){
+
+                              if(parseInt(response.data[i].relative_humidity)> parseInt(max)) { 
+
+                                max = response.data[i].relative_humidity }
+                                sum = sum + parseInt(response.data[i].relative_humidity);
+                                count = count + 1;
+                             }
+                             if(parseInt(i) == parseInt(response.data.length)-1){
+                                var min = max;
+                                for(var i =0;i<response.data.length;i++){
+                                    if (parseInt(response.data[i].iot_id)==s){
+                                         
+                                        if(parseInt(response.data[i].relative_humidity) < parseInt(min)) { min = response.data[i].relative_humidity }
                                         
                                        }
                                 }

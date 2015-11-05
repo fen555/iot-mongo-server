@@ -16,9 +16,9 @@
 </head>
 <body ng-controller="AppController as appCtrl">
 	<div class="col-sm-3">
-    <form ng-submit="appCtrl.log(input)">
-      Username<input type="username" placeholder="Username" ng-model="input.username">
-      Password<input type="password" placeholder="Password" ng-model="input.password">
+    <form ng-submit="appCtrl.log()">
+      Username<input type="username" placeholder="Username" ng-model="appCtrl.username">
+      Password<input type="password" placeholder="Password" ng-model="appCtrl.password">
       <input type="submit" value="Login" >
     </form>
 
