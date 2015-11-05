@@ -37,7 +37,6 @@ app.use('/', member)
  
 app.delete('/api/iot/:id', function (req, res){
   console.log("f"+req.params.id)
-  //var obj = new Model(req.body)
     Model.remove({"_id" : req.params.id}).exec(function (err, results) {
       if (err) {
         res.status(500).send(err)
@@ -46,17 +45,8 @@ app.delete('/api/iot/:id', function (req, res){
       }
     })
     
-      //return iot.findById(req.params.id, function (err, homework) {
-        //return iot.remove(function (err) {
-        //  if (err) {
-          //  console.log("removed")
-            //return res.send('')
-          //} if(iot) {
-            //console.log(err)
-          //}
-        //})//
-     // })
-    })
+   
+})
 
 
 

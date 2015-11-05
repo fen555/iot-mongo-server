@@ -152,17 +152,12 @@ angular.module('app', [])
                       }
                       
                   }
-                      
-
 
                   }, function error (response) {
                     alert(response.data.message)
                   }) 
           
         }
-
-
-
 
 
   })
