@@ -81,53 +81,154 @@ angular.module('app', [])
 
 
 
-    vm.graph0 = function(){
-      $http.get('/api/iot')
-              .then(function success (response) {
+    // vm.graph0 = function(){
+    //   $http.get('/api/iot')
+    //           .then(function success (response) {
          
-                  var data = {
-                              labels: [],
-                              datasets: [
-                                  {
-                                      label: "temperature",
-                                      fillColor: "rgba(255,0,0,0.2)",
-                                      strokeColor: "rgba(255,0,0,1)",
-                                      pointColor: "rgba(255,0,0,1)",
-                                      pointStrokeColor: "#fff",
-                                      pointHighlightFill: "#fff",
-                                      pointHighlightStroke: "rgba(220,220,220,1)",
-                                      data: []
-                                  },
-                                  {
-                                      label: "relative_humidity",
-                                      fillColor: "rgba(69,187,91,0.2)",
-                                      strokeColor: "rgba(69,187,91,1)",
-                                      pointColor: "rgba(69,187,91,1)",
-                                      pointStrokeColor: "#fff",
-                                      pointHighlightFill: "#fff",
-                                      pointHighlightStroke: "rgba(151,187,205,1)",
-                                      data: []
-                                  }
-                              ]
-                          };
+    //               var data = {
+    //                           labels: [],
+    //                           datasets: [
+    //                               {
+    //                                   label: "temperature",
+    //                                   fillColor: "rgba(255,0,0,0.2)",
+    //                                   strokeColor: "rgba(255,0,0,1)",
+    //                                   pointColor: "rgba(255,0,0,1)",
+    //                                   pointStrokeColor: "#fff",
+    //                                   pointHighlightFill: "#fff",
+    //                                   pointHighlightStroke: "rgba(220,220,220,1)",
+    //                                   data: []
+    //                               },
+    //                               {
+    //                                   label: "relative_humidity",
+    //                                   fillColor: "rgba(69,187,91,0.2)",
+    //                                   strokeColor: "rgba(69,187,91,1)",
+    //                                   pointColor: "rgba(69,187,91,1)",
+    //                                   pointStrokeColor: "#fff",
+    //                                   pointHighlightFill: "#fff",
+    //                                   pointHighlightStroke: "rgba(151,187,205,1)",
+    //                                   data: []
+    //                               }
+    //                           ]
+    //                       };
 
-               var ctx = document.getElementById("c").getContext("2d")
-               var myLineChart = new Chart(ctx).Line(data);
+    //            var ctx = document.getElementById("c").getContext("2d")
+    //            var myLineChart = new Chart(ctx).Line(data);
 
                
-                  for(var i =0;i<response.data.length;i++){
-                    if (response.data[i].iot_id==0){
-                         myLineChart.addData([response.data[i].temperature, response.data[i].relative_humidity] ,vm.toThaiDateTime(response.data[i].timestamp));
-                       }
+    //               for(var i =0;i<response.data.length;i++){
+    //                 if (response.data[i].iot_id==0){
+    //                      myLineChart.addData([response.data[i].temperature, response.data[i].relative_humidity] ,vm.toThaiDateTime(response.data[i].timestamp));
+    //                    }
                    
-                }
+    //             }
                
 
-              }, function error (response) {
-                alert(response.data.message)
-              }) 
+    //           }, function error (response) {
+    //             alert(response.data.message)
+    //           }) 
       
-    }
+    // }
+
+    vm.graph0 = function(){
+          $http.get('/api/iot')
+                  .then(function success (response) {
+             
+                      var data = {
+                          labels: [],
+                          datasets: [
+                              {
+                                  label: "MAX",
+                                  fillColor: "rgba(100,220,220,0.5)",
+                                  strokeColor: "rgba(100,220,220,0.8)",
+                                  highlightFill: "rgba(100,220,220,0.75)",
+                                  highlightStroke: "rgba(100,220,220,1)",
+                                  data: []
+                              },
+                              {
+                                  label: "MIN",
+                                  fillColor: "rgba(151,187,205,0.5)",
+                                  strokeColor: "rgba(151,187,205,0.8)",
+                                  highlightFill: "rgba(151,187,205,0.75)",
+                                  highlightStroke: "rgba(151,187,205,1)",
+                                  data: []
+                              }
+                              ,
+                              {
+                                  label: "AVG",
+                                  fillColor: "rgba(220,220,100,0.5)",
+                                  strokeColor: "rgba(220,220,100,0.8)",
+                                  highlightFill: "rgba(220,220,100,0.75)",
+                                  highlightStroke: "rgba(220,220,100,1)",
+                                  data: []
+                              }
+                          ]
+                      };
+
+                   var ctx = document.getElementById("c").getContext("2d")
+                  
+                    var myLineChart = new Chart(ctx).Bar(data);
+                   
+                   for(var s = 0;s<10;s++){
+                      var max = 0;
+                      var sum = 0;
+                      var count = 0;
+                      var avg = 0;
+                      for(var i =0;i<response.data.length;i++){
+                          if (response.data[i].iot_id==s){
+                                // console.log("="+response.data[i].temperature+">"+max)
+
+                              if(parseInt(response.data[i].temperature)> parseInt(max)) { 
+                                // console.log("if"+response.data[i].temperature)
+
+                                max = response.data[i].temperature }
+                                sum = sum + parseInt(response.data[i].temperature);
+                                count = count + 1;
+                             }
+                             if(parseInt(i) == parseInt(response.data.length)-1){
+                                var min = max;
+                                for(var i =0;i<response.data.length;i++){
+                                    if (parseInt(response.data[i].iot_id)==s){
+                                         
+                                        if(parseInt(response.data[i].temperature) < parseInt(min)) { min = response.data[i].temperature }
+                                        
+                                       }
+                                }
+                                 avg = sum/count;
+                                console.log(sum + " " + count + " " + avg)
+                                 myLineChart.addData([max,min,avg],"IOT-"+s);
+                             }
+                      }
+                      
+                      //myLineChart.addData([max,min,avg],"IOT-"+s);
+                  }
+                      
+                   //  for(var i =0;i<response.data.length;i++){
+                   //      if (response.data[i].iot_id==1){
+                             
+                   //          if(response.data[i].temperature > max) { max = response.data[i].temperature }
+                   //          sum = sum + parseInt(response.data[i].temperature);
+                   //        count = count + 1;
+                   //         }
+                   //  }
+                   //  var min = max;
+                   //  for(var i =0;i<response.data.length;i++){
+                   //      if (response.data[i].iot_id==1){
+                             
+                   //          if(response.data[i].temperature < min) { min = response.data[i].temperature }
+                            
+                   //         }
+                   //  }
+                   //  var avg = sum/count;
+                   // // console.log(sum + " " + count + " " + avg)
+                   //  myLineChart.addData([max,min,avg],"IOT-1");
+
+
+
+                  }, function error (response) {
+                    alert(response.data.message)
+                  }) 
+          
+        }
 
 
 
