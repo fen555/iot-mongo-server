@@ -35,20 +35,20 @@ angular.module('app', [])
         })
     }
 
-    // vm.Del = function (id,index){
-    //   //console.log(id,index)
-    //  $http.delete('/api/iot/'+id)
-    //       .success(function(data) {
-    //         vm.homeworks.splice(index,1)
+    vm.Del = function (id,index){
+      //console.log(id,index)
+     $http.delete('/api/iot/'+id)
+          .success(function(data) {
+            vm.homeworks.splice(index,1)
             
             
-    //       })
-    //       .error(function(data) {
-    //         console.log('Error: ' + data)
-    //       })
+          })
+          .error(function(data) {
+            console.log('Error: ' + data)
+          })
         
 
-    // }
+    }
 
     vm.login = function(){
       window.location = "login.html"
