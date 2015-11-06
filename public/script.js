@@ -65,7 +65,10 @@ angular.module('app', [])
                 console.log("have")
                 window.location = "report.html"
               }else  console.log("don't have")
-            }else   console.log("don't have")
+            }else  {
+                console.log("don't have")
+                alert("username or password wrong")
+            } 
          })
     }
 
@@ -77,6 +80,7 @@ angular.module('app', [])
             console.log(response)
             
             alert('Success')
+            window.location = "report.html"
           }, function error (response) {
             alert(response.data.message)
         })
