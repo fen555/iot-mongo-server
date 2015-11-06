@@ -36,7 +36,7 @@ app.use('/', member)
 
  
 app.delete('/api/iot/:id', function (req, res){
-  console.log("f"+req.params.id)
+  console.log(req.params.id)
     Model.remove({"_id" : req.params.id}).exec(function (err, results) {
       if (err) {
         res.status(500).send(err)

@@ -14,11 +14,26 @@
 </head>
 <body ng-controller="AppController as appCtrl">
 	<div class="container">
+		<div class="container">
+			<div class="row">
+				  	<div class="col-xs-10 col-sm-6 col-md-8">
+				  		<h2>IOT</h2>
+				  	</div>
+				 
+					
+			
+				  	<div class="col-xs-2 col-xs-6 col-sm-4">
+				  		<button class="log btn btn btn-info glyphicon glyphicon-user" ng-click="appCtrl.login()">Login</button>
+				  	</div>
+			</div>
+		</div>
+			
+		</div>
 		<div class="row">
 			<div class="col-sm-8">
 
 				<table class="table">
-			  	<caption>IoT</caption>
+			  	<!-- <caption>IoT</caption> -->
 
 
 			  	<thead>
@@ -37,7 +52,7 @@
 				  		<td>{{homework.iot_id}}</td>
 				  		<td>{{homework.temperature}}</td>
 				  		<td>{{homework.relative_humidity}}</td>
-				  		<td><button ng-click="appCtrl.Del(homework._id,$index)">DEL</button></td>
+				  		<td><button ng-click="appCtrl.Del(homework._id,$index)" class="btn btn-danger glyphicon glyphicon-trash"> DEL</button></td>
 				  		
 				  	</tr>
 			    </tbody>
@@ -57,9 +72,9 @@
 				    <label >relative_humidity</label>
 				    <input type="text" ng-model="input.relative_humidity" class="form-control" placeholder="relative_humidity">
 				  </div>
-				  <button type="submit" class="btn btn-default">Add</button>
+				  <button type="submit" class="btn btn-success glyphicon glyphicon-plus"> Add</button>
 				</form>
-				<button class="log btn btn-default" ng-click="appCtrl.login()">Login</button>
+				<!-- <button class="log btn btn btn-info glyphicon glyphicon-user" ng-click="appCtrl.login()">Login</button> -->
 
 			</div>
 		</div>

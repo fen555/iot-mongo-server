@@ -15,25 +15,69 @@
   <title>Login</title>
 </head>
 <body ng-controller="AppController as appCtrl">
-	<div class="col-sm-3">
-    <form ng-submit="appCtrl.log()">
-      Username<input type="username" placeholder="Username" ng-model="appCtrl.username">
-      Password<input type="password" placeholder="Password" ng-model="appCtrl.password">
-      <input type="submit" value="Login" >
+
+	<div class="col-sm-5">
+
+    <form ng-submit="appCtrl.log()" class="form-horizontal">
+      <div class="form-group">
+            <label for="un" class="col-sm-2 control-label">Username</label>
+            <input type="username" placeholder="Username" ng-model="appCtrl.username" id="un" required>
+      </div>
+
+      <div class="form-group">
+            <label for="pw" class="col-sm-2 control-label">Password</label>
+            <input type="password" placeholder="Password" ng-model="appCtrl.password" id="pw" required>
+      </div>
+
+      <div class="form-group">
+        <input type="submit" value="Login" >
+      </div>
     </form>
 
 
   </div>
 
-  <div class="col-sm-2">
-    <form ng-submit="appCtrl.register(regis)">
-      Name<input type="text" placeholder="Name" ng-model="regis.name">
-      Surname<input type="text" placeholder="Surname" ng-model="regis.surname">
-      Tel.<input type="text" placeholder="Tel" ng-model="regis.tel">
-      E-mail<input type="text" placeholder="E-mail" ng-model="regis.email">
-      username<input type="text" placeholder="Username" ng-model="regis.username">
-      password<input type="password" placeholder="Password" ng-model="regis.password">
-      <input type="submit" value="Regis" >
+  <div class="col-sm-5" class="form-horizontal">
+
+    <form ng-submit="appCtrl.register(regis)" class="form-horizontal">
+      <div class="form-group">
+            <label for="name" class="col-sm-2 control-label">Name</label>
+            <input type="text" placeholder="Name" ng-model="regis.name" id="name" required>
+      </div>
+
+      <div class="form-group">
+            <label for="surname" class="col-sm-2 control-label">Surname</label>
+            <input type="text" placeholder="Surname" ng-model="regis.surname" id="surname" required>
+
+      </div>
+
+      <div class="form-group">
+            <label for="tel" class="col-sm-2 control-label">Tel</label>
+            <input type="text" placeholder="Tel" ng-model="regis.tel" id="tel" required>
+
+      </div>
+
+      <div class="form-group">
+            <label for="email" class="col-sm-2 control-label">E-Mail</label>
+            <input type="email" placeholder="E-mail" ng-model="regis.email" id="email" required>
+
+      </div>
+
+      <div class="form-group">
+            <label for="username" class="col-sm-2 control-label">Username</label>
+            <input type="text" placeholder="Username" ng-model="regis.username" id="username" required>
+
+      </div>
+
+      <div class="form-group">
+            <label for="password" class="col-sm-2 control-label">Password</label>
+            <input type="password" placeholder="Password" ng-model="regis.password" id="password" required>
+
+      </div>
+
+      <div class="form-group">
+        <input type="submit" value="Regis" >
+      </div>
     </form>
 
     

@@ -55,7 +55,7 @@ angular.module('app', [])
     }
 
 
-    vm.log = function(input){
+    vm.log = function(){
       console.log(vm.username + " " + vm.password)
       $http.post('/login' , { username : vm.username,password : vm.password })
        .then(function success (response) {
